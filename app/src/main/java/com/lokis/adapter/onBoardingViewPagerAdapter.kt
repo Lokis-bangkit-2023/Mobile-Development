@@ -27,12 +27,12 @@ class onBoardingViewPagerAdapter(private var context: Context, private var onBoa
         val view = LayoutInflater.from(context).inflate(R.layout.activity_on_boarding_one, null)
 
         val imageView: ImageView = view.findViewById(R.id.img_one)
-        val title: TextView = view.findViewById(R.id.tv_title_one)
+//        val title: TextView = view.findViewById(R.id.tv_title_one)
         val desc: TextView = view.findViewById(R.id.tv_desc_one)
 
 
         imageView.setImageResource(onBoardingList[position].imageUrl)
-        title.text = onBoardingList[position].title
+//        title.text = onBoardingList[position].title
         desc.text = onBoardingList[position].desc
 
         container.addView(view)
