@@ -46,10 +46,11 @@
     <string name="rekomendasi_wisata_buat_kamu">Rekomendasi Wisata Buat Kamu</string>
     <string name="lihat_semua">Lihat Semua</string>
     <string name="detail_wisata">Detail Wisata</string>
-    <string name="name">Name</string>
-    <string name="rating">Rating</string>
-    <string name="description">Deskripsi</string>
+    <string name="name">Tribeca Park</string>
+    <string name="rating">4.7</string>
+    <string name="description">Tribeca Park merupakan area terbuka ramai yang berada dekat dengan mall Central Park Taman ini terdiri banyak fasilitas mulai dari air mancur sampai kolam ikan koi. Selain itu pengunjung juga bisa menyaksikan event-event mingguan yang diadakan di sana.</string>
     <string name="masukkan_wisata_yang_anda_cari">Masukan Wisata Yang Anda Dicari</string>
     <string name="pilih_wisata_buat_kamu">Pilih Wisata Kamu</string>
+
 
 </resources>

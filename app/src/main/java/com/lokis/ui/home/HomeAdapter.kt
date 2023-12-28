@@ -1,6 +1,7 @@
 package com.lokis.ui.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,22 +16,16 @@ import com.google.android.libraries.places.api.net.FetchPhotoRequest
 import com.google.android.libraries.places.api.net.FetchPlaceRequest
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.lokis.R
-import com.lokis.model.DataDetail
 import com.lokis.model.DataTravel
-import java.util.ArrayList
+import com.lokis.ui.detail.DetailActivity
 import java.util.Arrays
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
 
-    private val limit = 20
+    private val limit = 248
     private val list = ArrayList<DataTravel>()
     var placeClient: PlacesClient? = null
 
-    private var onItemClickCallback: OnItemClickCallback? = null
-
-    fun setOnItemClickCallback (onItemClickCallback: OnItemClickCallback){
-        this.onItemClickCallback = onItemClickCallback
-    }
     @SuppressLint("NotifyDataSetChanged")
     fun setList(dataTravel: ArrayList<DataTravel>){
         list.clear()
@@ -92,6 +87,11 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(list[position])
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, DetailActivity::class.java)
+            holder.itemView.context.startActivities(arrayOf(intent))
+        }
     }
 
     override fun getItemCount(): Int {
@@ -100,9 +100,5 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
         } else {
             list.size
         }
-    }
-
-    interface OnItemClickCallback{
-        fun onItemClicked(home: DataTravel)
     }
 }

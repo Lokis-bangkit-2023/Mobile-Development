@@ -31,12 +31,13 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val btn_back: ImageView = findViewById(R.id.backarrowHome)
-
-        btn_back.setOnClickListener {
+        binding.backarrowHome.setOnClickListener {
             onBackPressed()
         }
 
+        viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
+        showLoading(true)
+        viewModel.setLocationDetail()
         val name = intent.getStringExtra(EXTRA_NAME)
         val url = intent.getStringExtra(EXTRA_URL)
         val rating = intent.getStringExtra(EXTRA_RATING)
@@ -45,21 +46,15 @@ class DetailActivity : AppCompatActivity() {
         bundle.putString(EXTRA_NAME, name)
         bundle.putString(EXTRA_URL, url)
         bundle.putString(EXTRA_RATING, rating)
-        bundle.putString(EXTRA_DESCRIPTION, deskripsi)
-
-        viewModel = ViewModelProvider(this@DetailActivity, ViewModelProvider.NewInstanceFactory())[DetailViewModel::class.java]
-        showLoading(true)
-        viewModel.setLocationDetail()
         viewModel.getDetail().observe(this) {
-
-            if (it != null) {
+            it?.let  {
                 showLoading(false)
                 binding.apply {
-                    tvNameDetail.text = it.name
-                    tvRate.text = it.rating
-                    tvDesc.text = it.deskripsi
+                    tvNameDetail.text = name
+                    tvRate.text = rating
+                    tvDesc.text = deskripsi
                     Glide.with(this@DetailActivity)
-                        .load(it.url)
+                        .load(url)
                         .transition(DrawableTransitionOptions.withCrossFade())
                         .centerCrop()
                         .into(imgDetail)

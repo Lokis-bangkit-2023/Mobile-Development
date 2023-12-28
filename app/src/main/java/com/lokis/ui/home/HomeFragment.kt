@@ -67,17 +67,6 @@ class HomeFragment : Fragment() {
         adapter = HomeAdapter()
         adapter.notifyDataSetChanged()
 
-        adapter.setOnItemClickCallback(object : HomeAdapter.OnItemClickCallback{
-            override fun onItemClicked(home: DataTravel) {
-                val intent = Intent(requireContext(), DetailActivity::class.java).apply {
-                    putExtra(DetailActivity.EXTRA_NAME, home.name)
-                    putExtra(DetailActivity.EXTRA_DESCRIPTION, home.deskripsi)
-                    putExtra(DetailActivity.EXTRA_URL, home.url)
-                    putExtra(DetailActivity.EXTRA_RATING, home.rating)
-                }
-                startActivity(intent)
-            }
-        })
 
         btnSearch.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_home_to_navigation_search)
